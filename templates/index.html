@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Comic Book Test</title>
+	<link rel="stylesheet" href="{{ url_for('static', filename='assets/bootstrap/css/bootstrap.min.css') }}">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Encode+Sans+Semi+Expanded">
+    <link rel="stylesheet" href="{{ url_for('static', filename='assets/css/styles.css') }}">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+	
+	<!-- JS file -->
+	<script src="{{ url_for('static', filename='assets/js/jquery.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='assets/bootstrap/js/bootstrap.min.js') }}"></script>
+    <script src="../static/assets/js/index.js"></script>
+	<!-- JS file -->
+</head>
+
+<body style="background-color: rgb(216,216,216);">
+    <h1 class="text-center" style="font-family: 'Encode Sans Semi Expanded', sans-serif;margin-top: 15px;margin-bottom: 20px;">ComicBook</h1>
+    <div class="container">
+        <div class="border rounded-0 d-flex float-none justify-content-between" style="margin-bottom: 62px;">
+            <p style="font-family: 'Encode Sans Semi Expanded', sans-serif;margin-bottom: 6px;margin-top: 6px;">Latest Issue</p>
+            <div class="btn-group" role="group">
+				<button id="list" class="btn" type="button" style="background-color: rgba(216,216,216);"><span class="glyphicon glyphicon-th-list">List</span></button>
+                <button id="grid" class="btn" type="button" style="background-color: rgba(216,216,216);"><span class="glyphicon glyphicon-th"></span>Grid</button>
+            </div>
+        </div>
+    </div>
+	<div class="container">
+		<div id="products" class="row view-group">
+			{% for item in listofcomics %}
+                <div class="item col-sm comic_item" text-align: center name="{{item.api_url}}">
+                    <div class="text-center" class="thumbnail card">
+                        <div style="margin-bottom: 25px;"  class="img-event">
+                            <img src="{{item.comic_image}}" alt="" height="350px" style="border-style: solid; border-width: 2px;" class="shadow-lg"/>
+                        </div>
+                        <div class="caption card-body">
+                            <p style="margin-bottom: 0px; font-family: 'Encode Sans Semi Expanded', sans-serif;" class="group inner list-group-item-text">
+                                <b>{{item.name}}</b></p>
+							<p style="margin-bottom: 0px; font-family: 'Encode Sans Semi Expanded', sans-serif; color: #999999;" class="group inner list-group-item-text">
+								<font size="2">{{item.date}}</font></p>
+                        </div>
+                    </div>
+                </div>
+			{% endfor %}
+		</div>
+	</div>
+
+
+</body>
+
+</html>
