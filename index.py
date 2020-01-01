@@ -14,7 +14,7 @@ from functions import getAllComicBookDetail
 app = Flask(__name__)
 
 # global strict slashes
-#app.url_map.strict_slashes = False
+app.url_map.strict_slashes = False
 
 # flask server environmental setup
 host =  '0.0.0.0'
@@ -47,12 +47,12 @@ def index():
     "Main page for list of comics"
     return render_template('index.html', listofcomics=getListofComicsInfo())
 
-@app.route('/comic_info/<api_url>', methods=['GET'])
-def comic_info(api_url):
+@app.route('/comic_info/<api_id>', methods=['GET'])
+def comic_info(api_id):
     """
     function to return detail info render of a comic
     """
-    return render_template('comic_info.html', comic_info=getAllComicBookDetail(api_url))
+    return render_template('comic_info.html', comic_info=getAllComicBookDetail(api_id))
 
 @app.route('/status', methods=['GET'])
 def status():

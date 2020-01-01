@@ -8,7 +8,7 @@ $(document).ready(function () {
 			});
 			
 			$('.comic_item').on('click', function () {	
-				console.log($(this).attr('api_url'));
-				window.location.replace(window.location.origin + '/comic_info/' + $(this).attr('api_url'));
+				console.log($(this).attr('api_id'));
+				window.location.replace(window.location.origin + '/comic_info/' + $(this).attr('api_id'));
 			});
         });

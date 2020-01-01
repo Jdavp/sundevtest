@@ -32,7 +32,7 @@
 	<div class="container">
 		<div id="products" class="row view-group">
 			{% for item in listofcomics %}
-                <div class="item col-sm comic_item" text-align: center name="{{item.api_url}}">
+                <div class="item col-sm comic_item" text-align: center api_id="{{item.api_id}}">
                     <div class="text-center" class="thumbnail card">
                         <div style="margin-bottom: 25px;"  class="img-event">
                             <img src="{{item.comic_image}}" alt="" height="350px" style="border-style: solid; border-width: 2px;" class="shadow-lg"/>
