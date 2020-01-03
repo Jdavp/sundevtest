@@ -45,14 +45,14 @@ def handle_400(exception):
 @app.route('/')
 def index():
     "Main page for list of comics"
-    return render_template('comics_list.html', listofcomics=getListofComicsInfo())
+    return render_template('index.html', listofcomics=getListofComicsInfo())
 
 @app.route('/comic_info/<api_id>', methods=['GET'])
 def comic_info(api_id):
     """
     function to return detail info render of a comic
     """
-    return render_template('index.html', comic_info=getAllComicBookDetail(api_id))
+    return render_template('comic_info.html', comic_info=getAllComicBookDetail(api_id))
 
 @app.route('/status', methods=['GET'])
 def status():
