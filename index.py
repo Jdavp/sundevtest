@@ -3,7 +3,7 @@
 Flask route that returns json status response
 """
 from flask import Flask, jsonify, make_response, render_template, url_for
-import os
+import sys
 from werkzeug.exceptions import HTTPException
 from flask import jsonify, request
 from flask import Flask, render_template, abort
@@ -20,6 +20,9 @@ app.url_map.strict_slashes = False
 host =  '0.0.0.0'
 port =   5000
 
+YOUR_API_KEY = sys.argv[1]
+
+headers = {'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_9_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/35.0.1916.47 Safari/537.36'}
 
 @app.errorhandler(404)
 def handle_404(exception):
@@ -45,14 +48,14 @@ def handle_400(exception):
 @app.route('/')
 def index():
     "Main page for list of comics"
-    return render_template('index.html', listofcomics=getListofComicsInfo())
+    return render_template('index.html', listofcomics=getListofComicsInfo(YOUR_API_KEY, headers))
 
 @app.route('/comic_info/<api_id>', methods=['GET'])
 def comic_info(api_id):
     """
     function to return detail info render of a comic
     """
-    return render_template('comic_info.html', comic_info=getAllComicBookDetail(api_id))
+    return render_template('comic_info.html', comic_info=getAllComicBookDetail(api_id, YOUR_API_KEY, headers))
 
 @app.route('/status', methods=['GET'])
 def status():
@@ -70,3 +73,5 @@ if __name__ == "__main__":
     """
     # start Flask app
     app.run(host=host, port=port,debug=True)
+
+print(getAllComicBookDetail(731980))

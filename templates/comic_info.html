@@ -1,60 +1,58 @@
 <!DOCTYPE html>
-<html lang=en>
+<html>
 
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
-    <title>Comic Book Detail</title>
-	<link rel="stylesheet" href="{{ url_for('static', filename='assets/bootstrap/css/bootstrap.min.css') }}">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Encode+Sans+Semi+Expanded">
-	<link rel="stylesheet" href="{{ url_for('static', filename='assets/css/styles.css') }}">
-	
-	<!-- JS file -->
-	<script src="{{ url_for('static', filename='assets/js/jquery.min.js') }}"></script>
-    <script src="{{ url_for('static', filename='assets/bootstrap/js/bootstrap.min.js') }}"></script>
-	<script src="../static/assets/js/issue.js"></script>
-	<!-- JS file -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">--->
+    <link rel="stylesheet" href="{{ url_for('static', filename='bootstrap/css/bootstrap.min.css') }}">
+    <script src="{{ url_for('static', filename='js/jquery.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='bootstrap/js/bootstrap.min.js') }}"></script>
+
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles/issuestyle.css') }}">
+    <script src="../static/assets/js/issue.js"></script>
 </head>
 
 <body style="background-color: rgb(216,216,216);">
-    <h1 class="text-center" style="font-family: 'Encode Sans Semi Expanded', sans-serif;margin-top: 15px;margin-bottom: 20px;">ComicBook</h1>
+    <header>
+        <h1 class="font-weight-light text-center text-lg-center mt-4 mb-0">ComicBook</h1>
+    </header>
+
     <div class="container">
-        <div class="border rounded-0 d-flex float-none justify-content-between" style="margin-bottom: 62px;">
-            <p style="font-family: 'Encode Sans Semi Expanded', sans-serif;margin-bottom: 6px;margin-top: 6px;">Issue Detail</p>
+        <div class="row m">
+            <div class="col">
+                <div class="container">
+					{%for key, value in comic_info.items()%}
+                    <div class="row">
+                        <h3>{{ key }}</h3>
+                        <div class="h-divider" style="height:1px; width:100%; border-top:1px solid gray; ">
+                        </div>
+                        <div class="container">
+                            <div class="row">
+                                {% for name in value[i] %}
+                                <div class="col-sm-6 d-flex justify-content-right align-items-center">
+
+                                    <p>
+                                        {% if name[1]|length %}
+                                        <img class="img" style="width: 30px; border-radius: 10%;" src={{ comic_image.value }} />
+                                        {% endif %}
+                                
+                                    {{ name[0] }}</p>
+                                </div>
+                                {% endfor %}
+                            </div>
+						</div>
+					{% endfor %}	
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div>
+                    <img class="img-fluid img-thumbnail float-right" src={{ comic_image }} />
+                </div>
+            </div>
+
         </div>
     </div>
-	<div class="container">
-        {% for item in comic_info %}
-		<img src="{{item[comic_image]}}" alt="" height="350px" style="border-style: solid; border-width: 2px;" class="shadow-lg"/>
-		<h2 style="font-family: 'Encode Sans Semi Expanded', sans-serif;margin-top: 15px;">Character</h2>
-		<hr>
-			<p>{{item[name]}} 
-			<img src="{{item[1]}}" height="30px" style="border-style: solid; border-width: 2px;" class="shadow-lg"/>
-			</p>
-		<h2 style="font-family: 'Encode Sans Semi Expanded', sans-serif;margin-top: 15px;">Creators</h2>
-		<hr>
-			<p>{{item[0]}} 
-			<img src="{{item[1]}}" height="30px" style="border-style: solid; border-width: 2px;" class="shadow-lg"/>
-			</p>
-		<h2 style="font-family: 'Encode Sans Semi Expanded', sans-serif;margin-top: 15px;">Teams</h2>
-		<hr>
-			<p>{{item[0]}} 
-			<img src="{{item[1]}}" height="30px" style="border-style: solid; border-width: 2px;" class="shadow-lg"/>
-		<h2 style="font-family: 'Encode Sans Semi Expanded', sans-serif;margin-top: 15px;">Locations</h2>
-		<hr>
-			<p>{{item[0]}} 
-			<img src="{{item[1]}}" height="30px" style="border-style: solid; border-width: 2px;" class="shadow-lg"/>
-		{% endfor %}
-		<h2 style="font-family: 'Encode Sans Semi Expanded', sans-serif;margin-top: 15px;">Concepts</h2>
-		<hr>
-		<!--
-		{% for item in concept_list %}
-			<p>{{item[0]}} {{item[1]}}</p>
-		{% endfor %}
-		-->
-	</div>
-
-
 </body>
 
 </html>

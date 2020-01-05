@@ -3,10 +3,7 @@ import requests, datetime, json
 
 headers = {'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_9_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/35.0.1916.47 Safari/537.36'}
 
-YOUR_API_KEY = 'a856a7efd994fee16d3b269264f02185ececb554'
-
-
-def getListofComicsInfo():
+def getListofComicsInfo(YOUR_API_KEY, headers):
     # get comics basic info (picture,name,date)
 
     response = requests.get("https://comicvine.gamespot.com/api/issues/?api_key="+ YOUR_API_KEY +"&sort=date_added:desc&format=json", headers=headers)
