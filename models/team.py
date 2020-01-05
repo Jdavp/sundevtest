@@ -6,10 +6,10 @@ def getTeamDetail(team_id, YOUR_API_KEY, headers):
 
     response = requests.get( "https://comicvine.gamespot.com/api/team/4060-"+ str(team_id) +'/?api_key='+ YOUR_API_KEY +'&format=json', headers=headers)
 
-    if response.json()['status_code'] != 200:
+    if response.json()['status_code'] != 1:
         return {'image':"",
                 'name':""
-                }
+                 }
 
     results = response.json()['results']
 
@@ -19,5 +19,5 @@ def getTeamDetail(team_id, YOUR_API_KEY, headers):
 
 
     return {'image':teams_image,
-            'name ':teams_name
+            'name':teams_name
             }

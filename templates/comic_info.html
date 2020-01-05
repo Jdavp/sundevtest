@@ -23,31 +23,29 @@
                 <div class="container">
 					{%for key, value in comic_info.items()%}
                     <div class="row">
+                        {% if key  != "comic_image" %}
                         <h3>{{ key }}</h3>
                         <div class="h-divider" style="height:1px; width:100%; border-top:1px solid gray; ">
                         </div>
                         <div class="container">
                             <div class="row">
-                                {% for name in value[i] %}
+                                {% for info in value %}
                                 <div class="col-sm-6 d-flex justify-content-right align-items-center">
-
-                                    <p>
-                                        {% if name[1]|length %}
-                                        <img class="img" style="width: 30px; border-radius: 10%;" src={{ comic_image.value }} />
-                                        {% endif %}
-                                
-                                    {{ name[0] }}</p>
+                                        <p>                                    
+                                        <img class="img" style="width: 30px; border-radius: 10%;" src={{ info.image }} />
+                                    {{ info.name }}</p>
                                 </div>
                                 {% endfor %}
                             </div>
-						</div>
-					{% endfor %}	
+                        {% endif %} 
+                        </div>
+                     {% endfor %}   
                     </div>
                 </div>
             </div>
             <div class="col">
                 <div>
-                    <img class="img-fluid img-thumbnail float-right" src={{ comic_image }} />
+                    <img class="img-fluid img-thumbnail float-right" src={{ comic_info.comic_image }} />
                 </div>
             </div>
 

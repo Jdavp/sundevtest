@@ -6,13 +6,11 @@ def getIssueDetail(api_id, YOUR_API_KEY, headers):
 
     response = requests.get('https://comicvine.gamespot.com/api/issue/4000-'+ str(api_id) +'/?api_key='+ YOUR_API_KEY +'&format=json', headers=headers)
 
-    if response.json()['status_code'] != 200:
-        return { "comics_image":"",
-            "list_character_ids":"",
-            "list_team_ids":"",
-            "list_location_ids":"",
-            "list_of_concepts_ids":""
-            }
+
+    #if response.json()['status_code'] != 1:
+        #abort(404)
+
+    #else:   
 
     results = response.json()['results']
 
@@ -30,14 +28,13 @@ def getIssueDetail(api_id, YOUR_API_KEY, headers):
     for i in range(len(results['location_credits'])):
         list_of_location_ids.append(results['location_credits'][i]['id'])
 
-    list_of_concepts_ids = []
-    for i in range(len(results['concept_credits'])):
-        list_of_concepts_ids.append(results['concept_credits'][i]['id'])   
-
+    #list_of_concepts_ids = []
+    #for i in range(len(results['concept_credits'])):
+        #list_of_concepts_ids.append(results['concept_credits'][i]['id'])
 
     return { "comics_image":comics_image,
             "list_character_ids":lists_of_character_ids,
             "list_team_ids":list_of_teams_ids,
             "list_location_ids":list_of_location_ids,
-            "list_of_concepts_ids":list_of_concepts_ids
+            #"list_of_concepts_ids":list_of_concepts_ids
             }

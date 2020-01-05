@@ -4,8 +4,8 @@ import requests, datetime, json
 def getCharacterDetail(character_id, YOUR_API_KEY, headers):
     #function to return the image info of a character
     response = requests.get('https://comicvine.gamespot.com/api/character/4005-'+ str(character_id) +'/?api_key='+ YOUR_API_KEY +'&format=json', headers=headers)
-    print(response)
-    if response.json()['status_code'] != 200:
+    
+    if response.json()['status_code'] != 1:
         return {'image':"",
                 'name':""
                 }
@@ -18,5 +18,5 @@ def getCharacterDetail(character_id, YOUR_API_KEY, headers):
     
     
     return {'image':character_image,
-            'name ':character_name
+            'name':character_name
             }

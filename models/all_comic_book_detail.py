@@ -27,21 +27,27 @@ def getAllComicBookDetail(api_id, YOUR_API_KEY, headers):
     each_location_info = []
 
     for i in range(len(character_list)):
-        each_character_info = getCharacterDetail(character_list[i], YOUR_API_KEY, headers)   
+        each_character_info.append(getCharacterDetail(character_list[i], YOUR_API_KEY, headers))   
 
     for i in range(len(teams_list)):
-        each_teams_info = getTeamDetail(teams_list[i], YOUR_API_KEY, headers)
+        each_teams_info.append(getTeamDetail(teams_list[i], YOUR_API_KEY, headers))
 
     for i in range(len(location_list)):
-       each_location_info = getLocationDetail(location_list[i], YOUR_API_KEY, headers)
-
+       each_location_info.append(getLocationDetail(location_list[i], YOUR_API_KEY, headers))
+    print(each_character_info)
     #for i in range(len(concept_list)):
         #each_concept_info = getConceptDetail(concept_list[i])
     #final_list.append(each_concept_info)
 
+    print(character_list)
+    print(each_character_info)
+    print(teams_list)
+    print(each_teams_info)
+    print(location_list)
+    print(each_location_info)
     return  {
                 "comic_image":comic_book_image,
-                " characters": each_character_info,
-                "teams": each_teams_info,
-                "location":each_location_info
+                "Characters": each_character_info,
+                "Teams": each_teams_info,
+                "Location":each_location_info
             }

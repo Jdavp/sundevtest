@@ -7,10 +7,10 @@ def getLocationDetail(location_id, YOUR_API_KEY, headers):
     
     response = requests.get("https://comicvine.gamespot.com/api/location/4020-"+ str(location_id) +'/?api_key='+ YOUR_API_KEY +'&format=json', headers=headers)
 
-    if response.json()['status_code'] != 200:
+    if response.json()['status_code'] != 1:
         return {'image':"",
-                'name':""
-                } 
+               'name':""
+               } 
     
     results = response.json()['results']
 
