@@ -73,5 +73,3 @@ if __name__ == "__main__":
     """
     # start Flask app
     app.run(host=host, port=port,debug=True)
-
-print(getAllComicBookDetail(731980))
